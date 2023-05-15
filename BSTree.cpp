@@ -155,8 +155,30 @@ void BSTree::insert(int n){
   } else {
     trailer->setRight(new_node);
   }
-
 }
+
+/* recursive insert doesn't work
+
+void BSTree::insertr(int n){
+	insertr(n, root);
+}
+
+void BSTree::insertr(int n, Node *p){
+	Node *new_node = new Node(n);
+	if (p == nullptr){
+    p = new_node;
+    return;
+  }
+
+	int val = p->getData();
+	if (n < val){
+		insertr(n, p->getLeft());
+	}
+	else {
+		insertr(n, p->getRight());
+	}
+}
+*/
 
 int BSTree::treesum(Node *n){ // counts each node's value starting from the chosen node
   if (n==nullptr){

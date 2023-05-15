@@ -15,8 +15,8 @@ public:
 
   std::string get_debug_string();
 
-  int search(int value);
-  void insert(int value);
+  int search(int n);
+  void insert(int n);
 
   int treesum();
   int treesum(Node *n);
@@ -26,5 +26,6 @@ public:
   int oddsum(Node *n);
   int searchr(int val); // recursive search
   int searchr(int val, Node *p);
-
+  // void insertr(int n);
+  // void insertr(int n, Node *p);
 };
