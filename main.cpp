@@ -19,6 +19,8 @@ int main(){
   	} catch (int e){
     std::cout << 17 << " not found\n";
   	}
+  	std::cout << t1->countLeaves() << std::endl;
+  	std::cout << t1->height() << std::endl;
   	t1->deleten(10);
   	try {
   	n = t1->search(10);

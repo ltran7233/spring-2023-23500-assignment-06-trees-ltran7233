@@ -33,4 +33,8 @@ public:
   // void insertr(int n);
   // void insertr(int n, Node *p);
   void deleten(int val);
+  int countLeaves();
+  int countLeaves(Node *p);
+  int height();
+  int height(Node *p);
 };

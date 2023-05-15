@@ -228,8 +228,6 @@ void BSTree::deleten(int val){
   }
 }
 
-
-
 int BSTree::treesum(Node *n){ // counts each node's value starting from the chosen node
   if (n==nullptr){
     return 0;
@@ -283,6 +281,48 @@ int BSTree::oddsum(){ // counts the sum of the odd nodes of the entire tree from
   return oddsum(root);
 }
 
+int BSTree::countLeaves(){
+  Node *current = root;
+  if (current == nullptr){
+    return 0;
+  } else {
+    return countLeaves(current);
+  }
+}
+
+int BSTree::countLeaves(Node *p){
+  Node *current = p;
+
+  if (current->getLeft() == nullptr && current->getRight() == nullptr){
+    return 1;
+  } else {
+    return countLeaves(current->getLeft()) + countLeaves(current->getRight());
+  }
+}
+
+int BSTree::height(){
+  Node *current = root;
+  if (current == nullptr){
+    return 0;
+  } else {
+    return height(current);
+  }
+}
+
+int BSTree::height(Node *p){
+  Node *current = p;
+  if (current == nullptr){
+    return 0;
+  } else {
+    int left_h = height(current->getLeft());
+    int right_h = height(current->getRight());
+    if (left_h < right_h){
+      return (right_h + 1);
+    } else {
+      return (left_h + 1);
+    }
+  }
+}
 
 void BSTree::setup(){ // tree example
   Node *n = new Node(10);
