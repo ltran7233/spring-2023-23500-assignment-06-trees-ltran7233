@@ -3,6 +3,10 @@
 #include <stdio.h>
 #include "Node.h"
 
+#define TREE_ERR_NOTFOUND 1
+#define TREE_ERR_EMPTY 2
+#define TREE_ERR_OTHER 4
+
 class BSTree{
  private:
   Node *root;
@@ -28,4 +32,5 @@ public:
   int searchr(int val, Node *p);
   // void insertr(int n);
   // void insertr(int n, Node *p);
+  void deleten(int val);
 };

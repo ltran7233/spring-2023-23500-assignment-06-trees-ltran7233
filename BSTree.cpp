@@ -89,7 +89,7 @@ int BSTree::search(int n){ // goes through the tree to find data value, if not f
       current = current->getRight();
     }
   }
-  throw 1; // returning a not found value would be better
+  throw TREE_ERR_NOTFOUND; // returning a not found value would be better
 
 }
 
@@ -99,7 +99,7 @@ int BSTree::searchr(int val){
 
 int BSTree::searchr(int val, Node *p){ // the recursive call
 	if (p == nullptr){
-		throw 1;
+		throw TREE_ERR_NOTFOUND;
 	}
 	
 	int node_val = p->getData();
@@ -108,10 +108,10 @@ int BSTree::searchr(int val, Node *p){ // the recursive call
 		return node_val;
 	}
 	else if (val < node_val){
-		return searchr(node_val, p->getLeft());
+		return searchr(val, p->getLeft());
 	}
 	else {
-		return searchr(node_val, p->getRight());
+		return searchr(val, p->getRight());
 	}
 }
 
@@ -179,6 +179,56 @@ void BSTree::insertr(int n, Node *p){
 	}
 }
 */
+
+void BSTree::deleten(int val){
+	if (root == nullptr){
+		throw TREE_ERR_EMPTY;
+	}
+	
+	Node *current = root;
+  Node *trailer = nullptr;
+  while (current->getData() != val){
+  	trailer = current; // catch the trailer up
+    if (current == nullptr){
+    	throw TREE_ERR_NOTFOUND;
+    } else if (val < current->getData()){
+      current = current->getLeft();
+    } else {
+      current = current->getRight();
+    }
+  }
+  
+  if (current->getLeft() == nullptr && current->getRight() == nullptr){ // case 1
+  	if (val < trailer->getData()){
+      trailer->setLeft(nullptr);
+    } else {
+      trailer->setRight(nullptr);
+    }
+  }
+  else if (current->getLeft() != nullptr && current->getRight() != nullptr){ // case 3
+  	Node *smallest = current->getRight();
+  	Node *strailer = nullptr;
+  	int small = smallest->getData();
+  	while (smallest != nullptr){
+  		strailer = smallest;
+  		small = strailer->getData();
+  		smallest = smallest->getLeft();
+  	}
+  	current->setData(small);
+		current->setRight(nullptr);
+  }
+  else { // case 2
+  	if (current->getLeft() != nullptr){
+			trailer->setLeft(current->getLeft());
+			current->setLeft(nullptr);
+		} else {
+			trailer->setRight(current->getRight());
+			current->setRight(nullptr);
+		}
+  }
+}
+
+
 
 int BSTree::treesum(Node *n){ // counts each node's value starting from the chosen node
   if (n==nullptr){
