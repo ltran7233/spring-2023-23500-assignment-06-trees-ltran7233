@@ -93,12 +93,26 @@ int BSTree::search(int n){ // goes through the tree to find data value, if not f
 
 }
 
-int searchr(int value){
-
+int BSTree::searchr(int val){ 
+	return searchr(val, root);
 }
 
-int searchr(int value, Node *p){ // the recursive call where node is whatever thats below the node
-
+int BSTree::searchr(int val, Node *p){ // the recursive call
+	if (p == nullptr){
+		throw 1;
+	}
+	
+	int node_val = p->getData();
+	
+	if (val == node_val){
+		return node_val;
+	}
+	else if (val < node_val){
+		return searchr(node_val, p->getLeft());
+	}
+	else {
+		return searchr(node_val, p->getRight());
+	}
 }
 
 /*
@@ -213,5 +227,4 @@ void BSTree::setup(){ // tree example
   n2->setLeft(n);
   n = new Node(8);
   n2->setRight(n);
-
 }

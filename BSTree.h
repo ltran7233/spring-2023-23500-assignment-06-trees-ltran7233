@@ -15,8 +15,6 @@ public:
 
   std::string get_debug_string();
 
-
-
   int search(int value);
   void insert(int value);
 
@@ -26,7 +24,7 @@ public:
   int countodds(Node *n);
   int oddsum();
   int oddsum(Node *n);
-  int searchr(int value); // recursive search
-  int searchr(int value, Node *p);
+  int searchr(int val); // recursive search
+  int searchr(int val, Node *p);
 
 };
